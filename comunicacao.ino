@@ -20,5 +20,5 @@ void loop() {
   Ec = Er[0]*58.17-45.57*Er[1]-Ec;  
 
   // Retorna o valor para a planta
-  Serial.println(valueToSend, 8);
+  Serial.println(Ec, 8);
 }
