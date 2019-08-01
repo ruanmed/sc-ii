@@ -1,12 +1,8 @@
-/*
-*/
-
-float Er[2] = {0.0, 0.0}; // variável para o dado recebido
-float Ec = 0.0;
-
+double Er[2] = {0.0, 0.0}; // variável para o dado recebido
+double Ec = 0.0;
 void setup() {
   Serial.begin(9600); // abre a porta serial, configura a taxa de transferência para 9600 bps
-  Serial.println(valueToSend, 8);
+  Serial.println(Ec, 8);//Enviando esforço do controlador para a planta
 }
 
 void loop() {
