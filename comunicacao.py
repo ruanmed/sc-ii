@@ -6,9 +6,10 @@
 import serial 
 import struct
 import matplotlib.pyplot as plt
+import math
 
 #arduinoSerial = serial.Serial('/dev/ttyACM0', 9600)
-arduinoSerial = serial.Serial('COM5', 9600)
+arduinoSerial = serial.Serial('COM5', 250000)
 
 Yseries = []
 ECseries = []
@@ -17,9 +18,10 @@ k = 0
 samplingTime = 0.019455
 Y = [0.0, 0.0, 0.0, 0.0]
 Ec = [0.0, 0.0, 0.0, 0.0]
+Er = 0
 #ser.write(b'5') #Prefixo b necessario se estiver utilizando Python 3.X
 
-while k*samplingTime<2:
+while k*samplingTime<10:
     while arduinoSerial.in_waiting == 0:
         pass # Enquanto não tiver resposta disponível não faz nada
 
@@ -42,12 +44,15 @@ while k*samplingTime<2:
     k = k+1
     # Retorna o valor para o controlador
     #data = arduinoSerial.write(struct.pack('f', Y[0]))
-    arduinoSerial.write(str(str(float(Y[0]))+'\n').encode())
-    print(Ec[0],Y[0]) # para fins de debug
+    #Er = 1-Y[0] #Degrau unitario 
+    #Er = k*samplingTime - Y[0] #Rampa unitaria
+    Er = math.cos(2*k*samplingTime) - Y[0] #Cosseno(2*w) unitário
+    arduinoSerial.write(str(str(float(Er))+'\n').encode())
+    #print(Ec[0],Y[0]) # para fins de debug
 
 plt.figure(1)
 plt.plot(Tseries,Yseries)
-plt.title('step response')
+plt.title('system response')
 plt.ylabel('Intensity')
 plt.xlabel('time - s')
 plt.grid(True)
