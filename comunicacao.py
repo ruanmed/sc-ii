@@ -6,8 +6,8 @@
 import serial 
 import struct
 
-#arduinoSerial = serial.Serial('/dev/ttyUSB0', 9600)
-arduinoSerial = serial.Serial('COM5', 9600)
+arduinoSerial = serial.Serial('/dev/ttyACM0', 9600)
+# arduinoSerial = serial.Serial('COM5', 9600)
 
 Y = [0.0, 0.0, 0.0, 0.0]
 Ec = [0.0, 0.0, 0.0, 0.0]
@@ -29,10 +29,12 @@ while True:
     Y[2] = Y[1]
     Y[1] = Y[0]
     #Y[0]= Ec[0] * 5.386e-06  + Ec[1]*1.616e-05 + Ec[2]* 1.616e-05 + Ec[3]*5.386e-06 + Y[1]* 2.469 - Y[2]*2.006 + Y[3]*0.5364
-    Y[0] = 7.926e-07*Ec[0] + 2.378e-06*Ec[1] + 2.378e-06*Ec[2] + 7.926e-07*Ec[3] + 2.712*Y[1] -2.444*Y[2] +0.732*Y[3]
-# Retorna o valor para o controlador
-#data = arduinoSerial.write(struct.pack('f', Y[0]))
-    arduinoSerial.write(b'str(Y[0])')
-    print(Ec,Y)
+    # Y[0] = 7.926e-07*Ec[0] + 2.378e-06*Ec[1] + 2.378e-06*Ec[2] + 7.926e-07*Ec[3] + 2.712*Y[1] -2.444*Y[2] +0.732*Y[3]
+    Y[0] = 0.0000007926*Ec[0] + 0.000002378*Ec[1] + 0.000002378*Ec[2] + 0.0000007926*Ec[3] + 2.712*Y[1] -2.444*Y[2] +0.732*Y[3]
+    
+    # Retorna o valor para o controlador
+    #data = arduinoSerial.write(struct.pack('f', Y[0]))
+    arduinoSerial.write(str(str(float(Y[0]))+'\n').encode())
+    print(Ec,Y) # para fins de debug
 	
     
