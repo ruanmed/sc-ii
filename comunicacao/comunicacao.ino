@@ -6,7 +6,7 @@ double Er[2] = {0.0, 0.0}; // variável para o dado recebido,
 double Ec = 0.0;           // colocamos double mas no Arduino UNO tem a mesma precisão de um float
 
 void setup() {
-  Serial.begin(9600); // abre a porta serial, configura a taxa de transferência para 9600 bps
+  Serial.begin(250000); // abre a porta serial, configura a taxa de transferência para 9600 bps
   Serial.println(Ec,16);//Enviando esforço do controlador para a planta
 }
 
@@ -23,7 +23,7 @@ void loop() {
   }     
   else { // se for uma nova linha, então vamos converter para float de fato, e fazer os cálculos
     Er[1] = Er[0];
-    Er[0] = (1 -inString.toFloat()); // transforma em float    
+    Er[0] = (inString.toFloat()); // transforma em float    
     
     // Calcula o valor controlado, o esforço do controlador
     Ec = 867.3*Er[0]-767.1*Er[1]+0.4859*Ec; 
