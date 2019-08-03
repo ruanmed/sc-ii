@@ -50,12 +50,13 @@ plt.plot(Tseries,Yseries)
 plt.title('step response')
 plt.ylabel('Intensity')
 plt.xlabel('time - s')
-
+plt.grid(True)
 
 plt.figure(2)
 plt.plot(Tseries,ECseries)
 plt.title('controller effort')
 plt.ylabel('Intensity')
 plt.xlabel('time - s')
+plt.grid(True)
 
 plt.show()
