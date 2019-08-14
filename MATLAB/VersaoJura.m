@@ -37,6 +37,8 @@ set(gcf,'position',[x0,y0,width,height])
 step(gmf)
 title('Resposta ao degrau de G(s)')
 set(gca,'FontSize',fontsize)
+grid on
+grid minor
 saveas(gcf,'f3-step-g.png')
 
 figure(4)
@@ -56,14 +58,16 @@ GmfZ = Gz/(1+Gz)
 figure(5)
 set(gcf,'position',[x0,y0,width,height])
 step(GmfZ)
-title('Resposta ao degrau de G(z) k=2459.85')
+title('Resposta ao degrau de G(z) com k=2459.85')
 set(gca,'FontSize',fontsize)
+grid on
+grid minor
 saveas(gcf,'f5-step-gz-k2459.png')
 
 figure(6)
 set(gcf,'position',[x0,y0,width,height])
 rlocus(Gz)
-title('Lugar das raízes de G(z) k=2459.85')
+title('Lugar das raízes de G(z) com k=2459.85')
 set(gca,'FontSize',fontsize)
 saveas(gcf,'f6-rlocus-gz-k2459.png')
 
@@ -75,6 +79,8 @@ set(gcf,'position',[x0,y0,width,height])
 step(gmf1)
 title('Resposta ao degrau de G(s) com k=1050')
 set(gca,'FontSize',fontsize)
+grid on
+grid minor
 saveas(gcf,'f7-step-gs-k1050.png')
 
 Gz1 = c2d(G1,T,'tustin');
@@ -85,6 +91,8 @@ set(gcf,'position',[x0,y0,width,height])
 step(GmfZ1)
 title('Resposta ao degrau de G(z) com k=1050')
 set(gca,'FontSize',fontsize)
+grid on
+grid minor
 saveas(gcf,'f8-step-gz-k1050.png')
 
 
