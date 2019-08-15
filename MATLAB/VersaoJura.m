@@ -13,8 +13,11 @@ Gp = tf(np,dp)
 figure(1)
 set(gcf,'position',[x0,y0,width,height])
 rlocus(Gp)
+axis([-40 10 -40 40])
+xticks(-40:5:10)
 title('Lugar das raízes de Gp(s)')
 set(gca,'FontSize',fontsize)
+% grid on
 saveas(gcf,'f1-rlocus-gp.png')
 
 nc = [1 6.3]
@@ -28,8 +31,11 @@ gmf = G/(1+G)
 figure(2)
 set(gcf,'position',[x0,y0,width,height])
 rlocus(Gc*Gp)
+axis([-40 10 -40 40])
+xticks(-40:5:10)
 title('Lugar das raízes de Gp(s)*Gc(s)')
 set(gca,'FontSize', fontsize)
+% grid on
 saveas(gcf,'f2-rlocus-gp-gc.png')
 
 figure(3)
